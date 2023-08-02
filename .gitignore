@@ -1,0 +1,14 @@
+*.log
+*.mp4
+cypress/results/specs/*
+cypress/videos/
+cypress/reports
+cypress/screenshots
+cypress/cucumber-json/
+node_modules/
+allure-results/
+allure-report/
+reports/cucumber-report
+mochawesome/
+reports/
+.DS_Store
