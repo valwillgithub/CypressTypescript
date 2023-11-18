@@ -1,20 +1,29 @@
 import { defineConfig } from 'cypress';
-import allureWriter from '@shelex/cypress-allure-plugin/writer';
-//const allureWriter = require('@shelex/cypress-allure-plugin');
+import createBundler from '@bahmutov/cypress-esbuild-preprocessor';
+import { addCucumberPreprocessorPlugin } from '@badeball/cypress-cucumber-preprocessor';
+//import { createEsbuildPlugin } from '@badeball/cypress-cucumber-preprocessor/esbuild/';
+const createEsbuildPlugin =
+  require('@badeball/cypress-cucumber-preprocessor/esbuild').createEsbuildPlugin;
 
 export default defineConfig({
-	e2e: {
-		experimentalStudio: true,
-		experimentalWebKitSupport: true,
-		reporter: 'mocha-allure-reporter',
-		env: {
-			api_url: 'https://petstore.swagger.io/v2',
-			web_url: 'https://www.bcg.com',
-		},
-		setupNodeEvents(on, config) {
-			// implement node event listeners here
-			allureWriter(on, config);
-			return config;
-		},
-	},
+  e2e: {
+    specPattern: '**/*.feature',
+    env: {
+      api_url: 'https://petstore.swagger.io/v2',
+      web_url: 'https://www.bcg.com',
+    },
+    async setupNodeEvents(
+      on: Cypress.PluginEvents,
+      config: Cypress.PluginConfigOptions
+    ): Promise<Cypress.PluginConfigOptions> {
+      await addCucumberPreprocessorPlugin(on, config);
+      on(
+        'file:preprocessor',
+        createBundler({
+          plugins: [createEsbuildPlugin(config)],
+        })
+      );
+      return config;
+    },
+  },
 });
