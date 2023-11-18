@@ -33,9 +33,9 @@ describe('QA Challenge Exercise UI', () => {
 		cy.visit(Cypress.env('web_url'));
 		cy.get('div.wrapper ul.topbar__navLinks a.topbar__navLinks--a').each(
 			($el) => {
-				let val = $el.text();
-				cy.log(val);
-				expect(val).to.be.oneOf(columnHeadings);
+				let rc = $el.text();
+				cy.log(rc);
+				expect(rc).to.be.oneOf(columnHeadings);
 			}
 		);
 	});
