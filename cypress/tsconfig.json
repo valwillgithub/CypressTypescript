@@ -5,6 +5,7 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "esModuleInterop": true,
+    "module": "node16",
     "moduleResolution": "node16",
     "target": "es5",
     "lib": ["es5", "dom"],

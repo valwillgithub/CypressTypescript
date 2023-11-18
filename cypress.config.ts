@@ -7,7 +7,9 @@ const createEsbuildPlugin =
 
 export default defineConfig({
   e2e: {
-    specPattern: '**/*.feature',
+    specPattern: '**/e2e/**/*.{feature,ts,cy.js}',
+    experimentalStudio: true,
+    experimentalWebKitSupport: true,
     env: {
       api_url: 'https://petstore.swagger.io/v2',
       web_url: 'https://www.bcg.com',
