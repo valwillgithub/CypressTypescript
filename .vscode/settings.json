@@ -1,0 +1,7 @@
+{
+  "editor.codeActionsOnSave": {},
+  "cucumberautocomplete.steps": ["cypress/e2e/**/*.{js,ts}"],
+  "cucumberautocomplete.syncfeatures": "/cypress/e2e/*.feature",
+  "cucumberautocomplete.strictGherkinCompletion": true,
+  "editor.formatOnSave": true
+}
